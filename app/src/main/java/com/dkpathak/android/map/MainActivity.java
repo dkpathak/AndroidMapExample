@@ -1,7 +1,7 @@
 package com.dkpathak.android.map;
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -13,9 +13,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
     double lon;
     double lat;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
         LatLng location = new LatLng(lat, lon);
         mMap.addMarker(new MarkerOptions().position(location).title("Your Location"));
-        CameraUpdate cm = CameraUpdateFactory.newLatLngZoom(location,15);
+        CameraUpdate cm = CameraUpdateFactory.newLatLng(location);
         mMap.moveCamera(cm);
-        mMap.animateCamera(cm, 2000,null);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15), 2000, null);
+
     }
 }
